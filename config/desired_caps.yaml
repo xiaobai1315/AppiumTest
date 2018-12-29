@@ -1,0 +1,14 @@
+platformName: Android
+platformVersion: 6.0.1
+deviceName: XXX
+udid: bbda9633
+noReset: False
+
+appPackage: com.tal.kaoyan
+appActivity: com.tal.kaoyan.ui.activity.SplashActivity
+
+unicodeKeyboard: True
+resetKeyboard: True
+automationName: uiautomator2
+ip: 127.0.0.1
+port: 4723
