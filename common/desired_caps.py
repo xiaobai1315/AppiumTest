@@ -2,6 +2,8 @@ from appium import webdriver
 import logging.config
 import yaml
 import os
+from time import sleep
+from common.variable import GetVariable
 
 
 logging.config.fileConfig('../config/log.conf')
@@ -12,27 +14,37 @@ def desired_caps():
     with open("../config/desired_caps.yaml", 'r', encoding='utf-8') as f:
         data = yaml.load(f)
 
-    desired_caps = {}
-    desired_caps['platformName'] = data['platformName']
-    desired_caps['platformVersion'] = data['platformVersion']
-    desired_caps['udid'] = data['udid']
-    desired_caps['deviceName'] = data['deviceName']
-    desired_caps['appPackage'] = data['appPackage']
-    desired_caps['appActivity'] = data['appActivity']
-    desired_caps['unicodeKeyboard'] = data['unicodeKeyboard']
-    desired_caps['resetKeyboard'] = data['resetKeyboard']
-    desired_caps['automationName'] = data['automationName']
-    desired_caps['resetKeyboard'] = data['resetKeyboard']
-    desired_caps['noReset'] = data['noReset']
+    caps = dict()
 
-    basePath = os.path.dirname(os.path.dirname(__file__))
-    filePath = os.path.join(basePath, 'app', 'kaoyan.apk')
-    desired_caps['app'] = filePath
+    caps['platformVersion'] = GetVariable.device["platformVersion"]
+    caps['udid'] = GetVariable.device["udid"]
+    caps['deviceName'] = GetVariable.device["deviceName"]
 
-    driver = webdriver.Remote('http://{}:{}/wd/hub'.format(data["ip"], data['port']), desired_caps)
+    caps['platformName'] = data['platformName']
+    caps['appPackage'] = data['appPackage']
+    caps['appActivity'] = data['appActivity']
+    caps['unicodeKeyboard'] = data['unicodeKeyboard']
+    caps['resetKeyboard'] = data['resetKeyboard']
+    caps['automationName'] = data['automationName']
+    caps['noReset'] = data['noReset']
+
+    base_path = os.path.dirname(os.path.dirname(__file__))
+    file_path = os.path.join(base_path, 'app', 'kaoyan.apk')
+    caps['app'] = file_path
+
+    driver = webdriver.Remote('http://{}:{}/wd/hub'.format(data["ip"], GetVariable.port), caps)
+    driver.implicitly_wait(2)
+
+    sleep(5)
+
     return driver
 
 
-if __name__ == '__main__':
-    desired_caps()
-    logging.info('---------info--------')
+
+
+
+# if __name__ == '__main__':
+#     # for desired in desired_process:
+#     #     desired.start()
+#     # for desired in desired_process:
+#     #     desired.join()
