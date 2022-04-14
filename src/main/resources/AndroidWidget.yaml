@@ -1,0 +1,35 @@
+androidTextView: {
+  by: "class name",
+  path: "android.widget.TextView",
+  desc: "系统控件-TextView"
+}
+androidViewView: {
+  by: "class name",
+  path: "android.view.View",
+  desc: "系统控件-view"
+}
+androidImageview: {
+  by: "class name",
+  path: "android.widget.ImageView",
+  desc: "系统控件-ImageView"
+}
+androidImage: {
+  by: "class name",
+  path: "android.widget.Image",
+  desc: "系统控件-Image"
+}
+androidEditText: {
+  by: "class name",
+  path: "android.widget.EditText",
+  desc: "系统控件-EditText"
+}
+androidListView: {
+  by: "class name",
+  path: "android.widget.ListView",
+  desc: "系统控件-ListView"
+}
+androidButton: {
+  by: "class name",
+  path: "android.widget.Button",
+  desc: "系统控件-Button"
+}
